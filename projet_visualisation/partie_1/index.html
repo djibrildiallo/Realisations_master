@@ -1,0 +1,246 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <title>Index</title>
+    <link
+      href="src/assets/bootstrap/css/bootstrap.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="src/assets/bootstrap/css/bootstrap-theme.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="src/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="src/assets/bootstrap/js/jquery.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <br />
+      <div class="row">
+        <div class="col-lg-5">
+          <div class="panel panel-primary">
+            <div class="panel-heading">PANNEAU DE SAISIE</div>
+            <div class="panel-body">
+              <div class="col-sm-12">
+                <form id="myform">
+                  <div class="form-group row">
+                    <label for="employee" class="col-sm-6 col-form-label"
+                      >Nom de l'employee</label
+                    >
+                    <div class="col-sm-6">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="employee"
+                        name="employee"
+                      />
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="categorie" class="col-sm-6 col-form-label"
+                      >Categorie</label
+                    >
+                    <div class="col-sm-6">
+                      <select
+                        class="form-control"
+                        name="categorie"
+                        id="categorie"
+                      >
+                        <option>Categorie A</option>
+                        <option>Categorie B</option>
+                        <option>Categorie C</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="nombreDHeures" class="col-sm-6 col-form-label"
+                      >Nombre d'heures</label
+                    >
+                    <div class="col-sm-6">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="nombreDHeures"
+                        name="nombreDHeures"
+                        value="140"
+                      />
+                    </div>
+                  </div>
+                  <fieldset class="form-group">
+                    <div class="row">
+                      <label class="col-form-label col-sm-12 pt-0">
+                        A t-il effectue des heures supplementaires ?
+                      </label>
+                      <div class="col-sm-10">
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="gridRadios"
+                            id="true"
+                            value="oui"
+                            checked
+                          />
+                          <label class="form-check-label" for="true">
+                            Oui
+                          </label>
+                        </div>
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="gridRadios"
+                            id="false"
+                            value="non"
+                            
+                          />
+                          <label class="form-check-label" for="false">
+                            Non
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </fieldset>
+
+                  <div id="divHeuresSup" class="form-group row">
+                    <label for="heuresSup" class="col-sm-6 col-form-label"
+                      >Heures Sup</label
+                    >
+                    <div class="col-sm-6">
+                      <select
+                        class="form-control"
+                        name="heuresSup"
+                        id="heuresSup"
+                      >
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                      <option>6</option>
+                      <option>7</option>
+                    </select>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="prime" class="col-sm-6 col-form-label"
+                      >Avantages</label
+                    >
+                    <div class="col-sm-6">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="prime"
+                        name="prime"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <div class="col-sm-10">
+                      <button
+                        id="submit-button"
+                        class="btn btn-success"
+                        type="submit"
+                      >
+                        Ajouter
+                      </button>
+                      <button class="btn btn-danger" type="reset">
+                        Annuler
+                      </utton>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-7">
+          <div class="panel panel-primary">
+            <div class="panel-heading">ENREGISTREMENT</div>
+            <table id="mytab" class="table">
+              <thead>
+                <tr>
+                  <th>Nom</th>
+                  <th>Salaire</th>
+                  <th>RAS</th>
+                  <th>Salaire NET</th>
+                </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                    <td></td>
+                    <td class="text-primary"></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript">
+ 
+      $(document).ready(function() {
+        $('input[name=gridRadios]').change(function() {
+          if (this.value == 'oui') {
+            $('#divHeuresSup').show();
+            console.log("show");
+          }else {
+            $('#divHeuresSup').hide();
+            console.log("hide");
+          }
+      });
+    });
+
+      $("#submit-button").on("click", function(e) {
+        var employee = $('#employee').val()
+        var nombreDHeures = Number($('#nombreDHeures').val());
+        var categorie = $('#categorie').val();
+        var heuresSup = Number($('#heuresSup').val());
+        var prime = Number($('#prime').val());
+       
+        var tauxImpot = 0;
+        var hs = 0;
+        var tauxHoraire = 0;
+        
+        switch (categorie) {
+            case "Categorie A":
+                tauxHoraire = 10000;
+                tauxImpot = 0.1;
+                break;
+            case "Categorie B":
+                tauxHoraire = 7500;
+                tauxImpot = 0.075;
+                break;
+            case "Categorie C":
+                tauxHoraire = 5000;
+                tauxImpot = 0.05;
+                break;
+            default:
+                break;
+        }
+        var heuresTotal = nombreDHeures + heuresSup;
+        if (heuresTotal == 145 ) {
+            hs = 5  * (0.30 * tauxHoraire); 
+        } else if (heuresTotal > 145 ) {
+            hs = (heuresTotal - 145) * (0.45 * tauxHoraire)
+        }
+
+        var sb = nombreDHeures * tauxHoraire;
+        var s = (sb + hs + prime) ; 
+        var sn = s - (s * tauxImpot);
+        var ras = s * tauxImpot;
+
+        var table = $('#mytab');
+        table.append("<tr><td>" + employee + "</td><td>" + s + " FCFA</td><td>" + ras + " FCFA</td><td>" + sn + " FCFA</td></tr>");
+        e.preventDefault();
+
+      });
+    </script>
+  </body>
+</html>
